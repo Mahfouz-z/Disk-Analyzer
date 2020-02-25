@@ -1,8 +1,8 @@
-#include <dirent.h> 
-#include <stdio.h> 
+#include <unistd.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <stdio.h>
 #include <string.h>
-#include "findFileSize.c"
-
 
 
 double totalSize = 0;
@@ -18,10 +18,11 @@ void calculateSpace(char * path)
     {
       if(dir-> d_type != DT_DIR) // if the type is not directory just print it with blue
       {  
-        //printf("%s\n", dir->d_name); // print its name in green
+        
         char filePath[10000]; // here I am using sprintf which is safer than strcat
         sprintf(filePath, "%s/%s", path, dir->d_name);
-        double size = findSize(filePath)*1e-9;
+        printf("%s\n", filePath); // print its name in green
+        double size = dir->d_reclen*1e-9;
 
         if(size != -1 && size < 1000)
         {
@@ -36,6 +37,8 @@ void calculateSpace(char * path)
         //printf("%s\n", dir->d_name); // print its name in green
         char d_path[10000]; // here I am using sprintf which is safer than strcat
         sprintf(d_path, "%s/%s", path, dir->d_name);
+        printf("%s\n", d_path); // print its name in green
+
         calculateSpace(d_path); // recall with the new path
       }
     }
@@ -44,7 +47,7 @@ void calculateSpace(char * path)
 
 int main(int argc, char **argv)
 {
-
+  chdir("/");
   printf("\n");
   calculateSpace("/");
   printf("%lf\n", totalSize);
