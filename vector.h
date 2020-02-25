@@ -25,6 +25,5 @@ void vector_set(vector *, int, void *);
 void *vector_get(vector *, int);
 void vector_delete(vector *, int);
 void vector_free(vector *);
-    struct list *cur = (struct lis*)malloc(sizeof(struct list));
 
 #endif
