@@ -29,13 +29,13 @@ double directorySize(char *directory_name,struct list* prev )
             vector_init(&current->next);
             vector_add(&prev->next,current);
             current->name = buffer;
-
+            current->size=0;
             struct stat file_stat;
 
             if (pDirent->d_type != DT_DIR)
             {
                 stat(buffer, &file_stat);
-                current->size = (file_stat.st_size);
+                current->size = (file_stat.st_blocks * S_BLKSIZE)/ (1073741274.0);
                 directory_size+=current->size;
             }
 
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     vector_init(&head->next);
     head->name="/usr";
     
-    printf("%lfGB\n", directorySize("/usr",head) / (1073741274));
+    printf("%lfGB\n", directorySize("/lib",head));
 
     return 0;
 }
