@@ -6,6 +6,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include "vector.h"
 
 #ifdef HAVE_INTTYPES_H
 # include <inttypes.h>
@@ -14,17 +15,17 @@
 # include <stdint.h>
 #endif
 struct list{
-    unsigned long long int size;
+    double size;
     char *name;
-    struct list *parent;
+    struct vector next;
 };
-
-void addToParent(struct list *node ){
-    struct list *cur;
+/*
+void addToParent(struct list node ){
+    struct list cur;
     for ( cur = node->parent; cur !=NULL; cur = cur->parent){
         cur->size+=node->size;
     }
 }
-
+*/
 
 #endif
