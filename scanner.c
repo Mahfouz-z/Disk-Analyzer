@@ -8,8 +8,8 @@
 #include "vector.h"
 #include "vector.c"
 
-#define BLOCKSIZE 1024
-
+#define BLOCKSIZE 512
+static double counter = 0;
 long tot;
 void print_tree(struct list *ptr){
   if(ptr!=NULL){
@@ -38,6 +38,7 @@ double directorySize(char *directory_name,struct list* prev )
         while ((pDirent = readdir(pDir)) != NULL) 
         {
             char buffer[PATH_MAX + 1];
+            
 
             strcat(strcat(strcpy(buffer, directory_name), "/"), pDirent->d_name); // copy the new path to the buffer
 
@@ -59,7 +60,9 @@ double directorySize(char *directory_name,struct list* prev )
 
                 if (!S_ISLNK(file_stat.st_mode)){
                   // if the file is not a symbolic link, count it
+                  
                   current->size = file_stat.st_size/(1024*1024*1024.0);
+                  counter += (file_stat.st_blocks *BLOCKSIZE) /(1024*1024*1024.0);
                   directory_size+=current->size;
                   vector_add(&prev->next,current);
                 }
@@ -106,7 +109,8 @@ int main(int argc, char *argv[])
     // comment the following line if you to debug in VS code
     head->name=argv[1];
 
-    printf("%lf GB\n", directorySize(head->name,head));
+    printf("Using st_size: %lf GB\n", directorySize(head->name,head));
+    printf("Using st_blocks: %lf GB\n", counter);
     //print_tree(head);
     //printf("%lf",tot);
     return 0;
