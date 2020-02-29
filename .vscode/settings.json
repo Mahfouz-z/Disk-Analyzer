@@ -2,6 +2,13 @@
     "files.associations": {
         "stdint.h": "c",
         "stdio.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "array": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp"
     }
 }

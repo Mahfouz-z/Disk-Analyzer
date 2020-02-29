@@ -10,101 +10,79 @@
 
 #define BLOCKSIZE 1024
 
-int roundUp(int num) {
-   int remainder = abs(num) % 4;
-
-   if (remainder == 0)
-      return num;
-   else 
-      return num + 4 - remainder;
-}
-
-
-int not_folder(char * path)
-{
-    struct stat path_stat;
-    stat(path, &path_stat);
-    return (S_ISREG(path_stat.st_mode));
-}
-
-double folder_size(char * name)
-{
-  double dir_size = 0L;
-  struct dirent * pDirent;
-  DIR * pDir = opendir(name);
-  while ((pDirent = readdir(pDir)))
-  {
-    if (strcmp (pDirent->d_name, "..") != 0 && strcmp (pDirent->d_name, ".") != 0)
+long tot;
+void print_tree(struct list *ptr){
+  if(ptr!=NULL){
+    tot +=1;
+    printf("%lf    %s     %d\n",ptr->size,ptr->name,vector_total(&ptr->next));
+    for (int i = 0; i < vector_total(&ptr->next); i++)
     {
-      char buf[PATH_MAX];
-      strcpy(buf, name);
-      strcat(buf, "/");
-      strcat(buf, pDirent->d_name);
-      if (not_folder(buf))
-      {
-        struct stat st;
-        stat(buf, &st);
-        dir_size += st.st_blocks * S_BLKSIZE*1e-9;
-        //printf("%s %ld\n", buf, (long)st.st_size);
-      }
-      else
-      {
-        dir_size += folder_size(buf);
-      }
+      
+      struct list *cur = vector_get(&ptr->next,i);
+        printf("%lf    %s\n",cur->size,cur->name );
     }
+    
   }
-  (void) closedir(pDir);
-  return dir_size;
 }
 
 double directorySize(char *directory_name,struct list* prev )
 {
     double directory_size = 0;
-    
 
+    DIR *pDir; // create a pointer to the current directory struct
 
-    DIR *pDir;
-
-    if ((pDir = opendir(directory_name)) != NULL)
+    if ((pDir = opendir(directory_name)) != NULL) // check if the current file is an openable directory
     {
         struct dirent *pDirent;
 
-        while ((pDirent = readdir(pDir)) != NULL)
+        while ((pDirent = readdir(pDir)) != NULL) 
         {
             char buffer[PATH_MAX + 1];
 
-            strcat(strcat(strcpy(buffer, directory_name), "/"), pDirent->d_name);
+            strcat(strcat(strcpy(buffer, directory_name), "/"), pDirent->d_name); // copy the new path to the buffer
+
+            // this is the for the general size tree
+            // it works except for the name problem
             struct list *current = (struct list*)malloc(sizeof(struct list));
             vector_init(&current->next);
             
             current->name = buffer;
-            //printf("%s\n",current->name);
             current->size=0;
             struct stat file_stat;
-            if(strcmp(current->name,"//dev/lightnvm/control")==0){
-              int jhg = 0;
-            }
+            
 
-            if (pDirent->d_type != DT_DIR)
+            if (pDirent->d_type != DT_DIR) // if the file type is not a directory, add it's size
             {
               if (strcmp(pDirent->d_name, ".") != 0 && strcmp(pDirent->d_name, "..") != 0){
-                vector_add(&prev->next,current);
-                print_tree(prev);
-                stat(buffer, &file_stat);
-                //roundUp((stats->st_size + (BLOCKSIZE - 1)) / BLOCKSIZE)
-                current->size = file_stat.st_size*1e-9;
-                directory_size+=current->size;
+                
+                lstat(buffer, &file_stat);
+
+                if (!S_ISLNK(file_stat.st_mode)){
+                  // if the file is not a symbolic link, count it
+                  current->size = file_stat.st_size/(1024*1024*1024.0);
+                  directory_size+=current->size;
+                  vector_add(&prev->next,current);
+                }
               }
             }
 
-            else if (pDirent->d_type == DT_DIR)
+            else if (pDirent->d_type == DT_DIR ) 
             {
-                if (strcmp(pDirent->d_name, ".") != 0 && strcmp(pDirent->d_name, "..") != 0)
+                // the proc folder is excluded since it's not on the disk
+                // and it contains terabytes of data
+                // also, each folder has a "." and ".." path which leads to the current directory and the previous, respectivly
+                if (strcmp(pDirent->d_name, ".") != 0 && strcmp(pDirent->d_name, "..") != 0&& strcmp(pDirent->d_name, "proc") != 0)
                 {
-                    vector_add(&prev->next,current);
-                    print_tree(prev);
-                    current->size += directorySize(buffer,current);
-                    directory_size+=current->size;
+                    lstat(buffer, &file_stat);
+                    if (!S_ISLNK(file_stat.st_mode)){
+                      // if the file is not a symbolic link, count it
+
+                      vector_add(&prev->next,current);
+                      //recursivly call the function on the current directory
+                      current->size += directorySize(buffer,current);
+                      directory_size+=current->size;
+                      vector_add(&prev->next,current);
+                    }
                 }
             }
         }
@@ -115,29 +93,20 @@ double directorySize(char *directory_name,struct list* prev )
     return directory_size;
 }
 
-long tot;
-void print_tree(struct list *ptr){
-  if(ptr!=NULL){
-    tot +=1;
-    printf("%lf    %s     %d\n",ptr->size,ptr->name,vector_total(&ptr->next));
-    for (int i = 0; i < vector_total(&ptr->next); i++)
-    {
-      
-      struct list *cur = vector_get(&ptr->next,i);
-        printf("%lf    %s\n",ptr->size,cur->name );
-    }
-    
-  }
-}
 
 int main(int argc, char *argv[])
 {
     //printf("%ld",S_BLKSIZE);
     struct list *head = (struct list*)malloc(sizeof(struct list));
     vector_init(&head->next);
-    head->name="/";
+    
+    // uncomment the following line if you want to debud without running from the console
+    //head->name="/";
 
-    printf("%lf GB\n", directorySize("/",head));
+    // comment the following line if you to debug in VS code
+    head->name=argv[1];
+
+    printf("%lf GB\n", directorySize(head->name,head));
     //print_tree(head);
     //printf("%lf",tot);
     return 0;
