@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "vector.h"
 
@@ -28,26 +29,36 @@ static void vector_resize(vector *v, int capacity)
     }
 }
 
-/*void vector_add(vector *v, struct list  *item)
+void vector_add(vector *v, struct list  *item)
 {
      struct list  *start = v->items[0];
     if (v->capacity == v->total)
         vector_resize(v, v->capacity * 2);
     v->items[v->total++] = item;
-}*/
-
+}
+/*
 void vector_add(vector *v, double size, char *name)
 {
 
     if (v->capacity == v->total)
         vector_resize(v, v->capacity * 2);
-        
+
     v->items[v->total] =( struct list*)malloc(sizeof(struct list));
     v->items[v->total]->size = size;
-    v->items[v->total++]->name = name;
+    //v->items[v->total]->name = (char *) malloc(sizeof(char *));
+    /*for (int i =0; i < sizeof(name);i++){
+        v->items[v->total]->name[i]=name[i];
+    }*//*
+    strcpy(v->items[v->total]->name, name);
+    v->total++;
+    //v->items[v->total++]->name = name;
+    for(int i=0; i<v->total; i++){
+        printf("%s \n", v->items[i]->name);
+    }
+    
 
 }
-
+*/
 void vector_set(vector *v, int index, struct list  *item)
 {
     if (index >= 0 && index < v->total)

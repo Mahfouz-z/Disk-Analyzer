@@ -15,8 +15,8 @@
 # include <stdint.h>
 #endif
 struct list{
-    double size;
-    char *name;
+    unsigned long long int  size;
+    char name[PATH_MAX + 1];
     struct vector  next;
 };
 /*
