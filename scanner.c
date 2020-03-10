@@ -46,19 +46,20 @@ void print_tree(struct list *ptr){
   if(ptr!=NULL){
     tot +=1;
     int flag= 0;
-        flag= vector_total(&ptr->next);
+    flag= vector_total(&ptr->next);
 
-    if(flag>0)
-    { 
-      printf("%s    %s\n",calculateSize(ptr->size),ptr->name);
-    }
+     
+    printf("%s    %s\n",calculateSize(ptr->size),ptr->name);
 
     printf("%d \n", vector_total(&ptr->next));
     for (int i=0; i < vector_total(&ptr->next); i++)
     {
       struct list *cur = vector_get(&ptr->next,i);
-      printf("%s      %s\n",calculateSize(cur->size),cur->name );
+      if(flag==0)
+        printf("%s      %s\n",calculateSize(cur->size),cur->name );
       print_tree(cur);
+
+      
     }
     
   }

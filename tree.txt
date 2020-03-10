@@ -1,60 +1,121 @@
 Using st_size: 150.8 MiB
-71117606    /home/sam/Downloads/Academics-20200308T103648Z-001.zip
-86977053    /home/sam/Downloads/Academics
-2056205    /home/sam/Downloads/Academics/Arch Lab
-149635    /home/sam/Downloads/Academics/Arch Lab/lab 5.pdf
-492992    /home/sam/Downloads/Academics/Arch Lab/900172660_Report_9.pdf
-588784    /home/sam/Downloads/Academics/Arch Lab/900172660_lab4_report.pdf
-104614    /home/sam/Downloads/Academics/Arch Lab/900172660_lab8.pdf
-322308    /home/sam/Downloads/Academics/Arch Lab/900172660_report_lab3 .pdf
-342114    /home/sam/Downloads/Academics/Arch Lab/900172660_Report2.pdf
-55758    /home/sam/Downloads/Academics/Arch Lab/900172660_Report_1.pdf
-53762510    /home/sam/Downloads/Academics/Microelectronics
-2361323    /home/sam/Downloads/Academics/Microelectronics/Assignments
-174257    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW1_Sol.pdf
-54985    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW1.pdf
-348876    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW4.pdf
-336288    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW3.pdf
-1065641    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW3_Sol.pdf
-252763    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW2_Sol(1).pdf
-128513    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW2.pdf
-47982831    /home/sam/Downloads/Academics/Microelectronics/Slides
-870706    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec16.pdf
-1239902    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec6.pdf
-1794608    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec10.pdf
-1461873    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec19.pdf
-2862944    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec11.pdf
-2425439    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec13.pdf
-985946    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec15.pdf
-1396779    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec7.pdf
-4529933    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec2.pdf
-2025761    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec18.pdf
-1537448    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec20.pdf
-1172560    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec3.pdf
-2870065    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec8.pdf
-3344290    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec12.pdf
-8261225    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec1.pdf
-982755    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec22.pdf
-1029994    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec5.pdf
-2974754    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec14.pdf
-2015541    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec9.pdf
-2081003    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec23.pdf
-828973    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec4.pdf
-1290332    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec17.pdf
-3418356    /home/sam/Downloads/Academics/Microelectronics/Samples
-338873    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam2_sec1_Sol.pdf
-325703    /home/sam/Downloads/Academics/Microelectronics/Samples/SAMPLE PROBLEMS  ANSWERS SET I.pdf
-235238    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam2_sec2.pdf
-90000    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam2_formulas.pdf
-249240    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam3_sec2(1).pdf
-164024    /home/sam/Downloads/Academics/Microelectronics/Samples/SAMPLE PROBLEMS SET I.pdf
-531936    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam3_sec2_Sol.pdf
-237345    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_final_exam_formulas.pdf
-395830    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam3_sec1_Sol.pdf
-261013    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam2_sec1.pdf
-248299    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam3_sec1.pdf
-340855    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam2_sec2_Sol.pdf
-31158338    /home/sam/Downloads/Academics/Operating systems
-31133896    /home/sam/Downloads/Academics/Operating systems/Abraham Silberschatz, Greg Gagne, Peter B. Galvin - Operating System Concepts (2018, Wiley).pdf
-6270    /home/sam/Downloads/Academics/Operating systems/youtube playlist.docx
-18172    /home/sam/Downloads/Academics/Operating systems/Lecture notes.docx
+150.8 MiB    /home/sam/Downloads
+2 
+67.8 MiB    /home/sam/Downloads/Academics-20200308T103648Z-001.zip
+0 
+82.9 MiB    /home/sam/Downloads/Academics
+3 
+2.0 MiB    /home/sam/Downloads/Academics/Arch Lab
+7 
+146.1 KiB    /home/sam/Downloads/Academics/Arch Lab/lab 5.pdf
+0 
+481.4 KiB    /home/sam/Downloads/Academics/Arch Lab/900172660_Report_9.pdf
+0 
+575.0 KiB    /home/sam/Downloads/Academics/Arch Lab/900172660_lab4_report.pdf
+0 
+102.2 KiB    /home/sam/Downloads/Academics/Arch Lab/900172660_lab8.pdf
+0 
+314.8 KiB    /home/sam/Downloads/Academics/Arch Lab/900172660_report_lab3 .pdf
+0 
+334.1 KiB    /home/sam/Downloads/Academics/Arch Lab/900172660_Report2.pdf
+0 
+54.5 KiB    /home/sam/Downloads/Academics/Arch Lab/900172660_Report_1.pdf
+0 
+51.3 MiB    /home/sam/Downloads/Academics/Microelectronics
+3 
+2.3 MiB    /home/sam/Downloads/Academics/Microelectronics/Assignments
+7 
+170.2 KiB    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW1_Sol.pdf
+0 
+53.7 KiB    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW1.pdf
+0 
+340.7 KiB    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW4.pdf
+0 
+328.4 KiB    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW3.pdf
+0 
+1.0 MiB    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW3_Sol.pdf
+0 
+246.8 KiB    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW2_Sol(1).pdf
+0 
+125.5 KiB    /home/sam/Downloads/Academics/Microelectronics/Assignments/CSCE3303_HW2.pdf
+0 
+45.8 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides
+22 
+850.3 KiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec16.pdf
+0 
+1.2 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec6.pdf
+0 
+1.7 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec10.pdf
+0 
+1.4 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec19.pdf
+0 
+2.7 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec11.pdf
+0 
+2.3 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec13.pdf
+0 
+962.8 KiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec15.pdf
+0 
+1.3 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec7.pdf
+0 
+4.3 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec2.pdf
+0 
+1.9 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec18.pdf
+0 
+1.5 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec20.pdf
+0 
+1.1 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec3.pdf
+0 
+2.7 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec8.pdf
+0 
+3.2 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec12.pdf
+0 
+7.9 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec1.pdf
+0 
+959.7 KiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec22.pdf
+0 
+1005.9 KiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec5.pdf
+0 
+2.8 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec14.pdf
+0 
+1.9 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec9.pdf
+0 
+2.0 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec23.pdf
+0 
+809.5 KiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec4.pdf
+0 
+1.2 MiB    /home/sam/Downloads/Academics/Microelectronics/Slides/csce3303_lec17.pdf
+0 
+3.3 MiB    /home/sam/Downloads/Academics/Microelectronics/Samples
+12 
+330.9 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam2_sec1_Sol.pdf
+0 
+318.1 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/SAMPLE PROBLEMS  ANSWERS SET I.pdf
+0 
+229.7 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam2_sec2.pdf
+0 
+87.9 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam2_formulas.pdf
+0 
+243.4 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam3_sec2(1).pdf
+0 
+160.2 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/SAMPLE PROBLEMS SET I.pdf
+0 
+519.5 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam3_sec2_Sol.pdf
+0 
+231.8 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_final_exam_formulas.pdf
+0 
+386.6 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam3_sec1_Sol.pdf
+0 
+254.9 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam2_sec1.pdf
+0 
+242.5 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam3_sec1.pdf
+0 
+332.9 KiB    /home/sam/Downloads/Academics/Microelectronics/Samples/CSCE3303_exam2_sec2_Sol.pdf
+0 
+29.7 MiB    /home/sam/Downloads/Academics/Operating systems
+3 
+29.7 MiB    /home/sam/Downloads/Academics/Operating systems/Abraham Silberschatz, Greg Gagne, Peter B. Galvin - Operating System Concepts (2018, Wiley).pdf
+0 
+6.1 KiB    /home/sam/Downloads/Academics/Operating systems/youtube playlist.docx
+0 
+17.7 KiB    /home/sam/Downloads/Academics/Operating systems/Lecture notes.docx
+0 
