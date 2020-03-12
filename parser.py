@@ -3,14 +3,19 @@ def makeTree(paths, children, size, inc, tree):
     r= int(children[inc])
     if(r==0):
         tree[paths[inc]]=size[inc]
-        print(str(inc)+"    fil")
+        print(paths[inc]+"    fil")
         inc+=1
     else:
+        
         for i in range (r):
             tree[paths[inc]]={}
-            print(str(inc)+"    fol")
+            #print(str(inc) +paths[inc]+"    fol  " + str(i))
             makeTree(paths, children, size, inc+1, tree[paths[inc]])
-            inc+=1
+            print(str(inc) +paths[inc]+"    fol  " + str(i))
+            if(children[inc]==0):
+                inc+=1
+            else:
+                inc=inc+2
 
 
 
@@ -40,7 +45,7 @@ for i in range(len(dirc)):
 
 well={}
 makeTree(paths, children, size, 0, well)
-#print(well)
+print(well)
 #for i in range (len(paths)):
 #    print(well[paths[i]])
 
