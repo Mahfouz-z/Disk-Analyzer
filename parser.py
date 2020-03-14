@@ -30,6 +30,11 @@ class Node:
         self.npath = npath  # Assign path
         self.nchildrenNump = nchildrenNump # Assign Number of Children
         self.nsize = nsize
+        type=npath.split(".")[len(npath.split("."))-1]
+        if(type==npath):
+            self.type="Folder"
+        else:
+            self.type=type
         self.next = []  # Initialize next as list
 
 # Linked List class contains a Node object 
@@ -39,7 +44,7 @@ class Tree:
     def __init__(self): 
         self.head = None
     def tree_print(self,root):
-        print(root.npath,"\t",root.nsize)
+        print(root.npath,"\t",root.nsize, root.type)
         for child in root.next:
             self.tree_print(child)
 
