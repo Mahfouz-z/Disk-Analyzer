@@ -1,84 +1,43 @@
-#!/usr/bin/env python3
+from treeClasses import *
 
-directoriesDict="tree.txt"
-f=open(directoriesDict, "r")
-data=f.read()
-parsed=[]
-dirc=[]
-paths=[]
-size=[]
-children=[]
-parsed = data.split("\n") 
-total= parsed.pop(0) 
-#parsed.pop(len(parsed)-1)
-for i in range(len(parsed)):
-    if(i%2==1):
-        children.append(parsed[i])
-    else:
-        dirc.append(parsed[i])
-for i in range(len(dirc)):
-    dirc[i]= dirc[i].split("    ")
-for i in range(len(dirc)):
-    size.append(dirc[i][0])
-    paths.append(dirc[i][1])
+class parser():
+    def __init__(self, disk_tree):
+        directoriesDict="tree.txt"
+        f=open(directoriesDict, "r")
+        self.data=f.read()
+        self.parsed=[]
+        self.dirc=[]
+        self.paths=[]
+        self.size=[]
+        self.children=[]
 
+        self.parsed = self.data.split("\n") 
+        self.total = self.parsed.pop(0) 
+        self.parsed.pop(len(self.parsed)-1)
+        for i in range(len(self.parsed)):
+            if(i%2==1):
+                self.children.append(self.parsed[i])
+            else:
+                self.dirc.append(self.parsed[i])
+        for i in range(len(self.dirc)):
+            self.dirc[i]= self.dirc[i].split("    ")
+        for i in range(len(self.dirc)):
+            self.size.append(self.dirc[i][0])
+            self.paths.append(self.dirc[i][1])
+        self.head = Node(self.paths[0],self.children[0],self.size[0])
+        disk_tree.head = self.head
+        self.count = 0
 
-
-# Node class 
-class Node: 
-   
-    # Function to initialize the node object 
-    def __init__(self, npath, nchildrenNump,nsize ): 
-        self.npath = npath  # Assign path
-        self.nchildrenNump = nchildrenNump # Assign Number of Children
-        self.nsize = nsize
-        type=npath.split(".")[len(npath.split("."))-1]
-        if(type==npath):
-            self.type="Folder"
-        else:
-            self.type=type
-        self.next = []  # Initialize next as list
-
-# Linked List class contains a Node object 
-class Tree: 
-  
-    # Function to initialize head 
-    def __init__(self): 
-        self.head = None
-    def tree_print(self,root):
-        print(root.npath,"\t",root.nsize, root.type)
-        for child in root.next:
-            self.tree_print(child)
-
-
-#test="test.txt"
-#w=open(test, "a")
-
-
-disk_tree = Tree() 
-head = Node(paths[0],children[0],size[0])
-disk_tree.head = head
-
-count = 0
-
-def generate(prev): 
-    global count
-    # Save the current number of children to avoid the incrementation of count
-    num = children[count]
-    if ( int(children[count]) != 0 ):  # in case fil, appened to the
-        for i in range (int(num)):
-            count= count +1
-            # Create a new node
-            current = Node(paths[count],children[count],size[count])
-            # if this is a directory, add its children first
-            if (int(children[count]) != 0):
-                generate(current)
-            # append the new node to the previous
-            prev.next.append(current)
-
-
-# head is now the root of the tree
-generate(disk_tree.head)
-disk_tree.tree_print(disk_tree.head)
-
-print("DONE")
+    def generate(self, prev): 
+        # Save the current number of children to avoid the incrementation of count
+        self.num = self.children[self.count]
+        if ( int(self.children[self.count]) != 0 ):  # in case fil, appened to the
+            for i in range (int(self.num)):
+                self.count= self.count +1
+                # Create a new node
+                current = Node(self.paths[self.count],self.children[self.count],self.size[self.count])
+                # if this is a directory, add its children first
+                if (int(self.children[self.count]) != 0):
+                    self.generate(current)
+                # append the new node to the previous
+                prev.next.append(current)
