@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
     unsigned long long sz = directorySize(head->name,head);
     head->size=sz;
     
-    printf("Using st_size: %s\n", calculateSize(sz));///(1024*1024*1024));
+    //printf("Using st_size: %s\n", calculateSize(sz));///(1024*1024*1024));
     print_tree(head);
     //printf("%lf",tot);
     return 0;
