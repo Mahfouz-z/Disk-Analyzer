@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 directoriesDict="tree.txt"
 f=open(directoriesDict, "r")
 data=f.read()
@@ -8,7 +10,7 @@ size=[]
 children=[]
 parsed = data.split("\n") 
 total= parsed.pop(0) 
-parsed.pop(len(parsed)-1)
+#parsed.pop(len(parsed)-1)
 for i in range(len(parsed)):
     if(i%2==1):
         children.append(parsed[i])
