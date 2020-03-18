@@ -7,11 +7,12 @@ class Node:
         self.npath = npath  # Assign path
         self.nchildrenNump = nchildrenNump # Assign Number of Children
         self.nsize = nsize
-        type=npath.split(".")[len(npath.split("."))-1]
+        self.type = ""
+        """type=npath.split(".")[len(npath.split("."))-1]
         if(type==npath):
             self.type="Folder"
         else:
-            self.type=type
+            self.type=type"""
         self.next = []  # Initialize next as list
 
 # Linked List class contains a Node object 

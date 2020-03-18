@@ -36,6 +36,11 @@ class parser():
                 self.count= self.count +1
                 # Create a new node
                 current = Node(self.paths[self.count],self.children[self.count],self.size[self.count])
+                type=current.npath.split(".")[len(current.npath.split("."))-1]
+                if(int(current.nchildrenNump)== 0):
+                    current.type=type.split("/")[len(type.split("/"))-1]
+                else:
+                    current.type= "Folder"
                 # if this is a directory, add its children first
                 if (int(self.children[self.count]) != 0):
                     self.generate(current)
