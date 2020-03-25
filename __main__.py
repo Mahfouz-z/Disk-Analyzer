@@ -46,7 +46,7 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
     def analyze(self):
         filePath = self.pathEntry.text()
         if os.path.exists(filePath):  
-            subprocess.run('exec ' + './scanner ' + filePath + ' ' + "> tree.txt", shell=True)
+            os.system('./scanner ' + filePath + ' ' + "> tree.txt")
             print("done producing the tree!")
             self.disk_tree = Tree() 
             parserInstance = parser(self.disk_tree)
@@ -114,7 +114,6 @@ if __name__ == '__main__':
     fb = MyFileBrowser()
     fb.show()
     app.exec_()
-
 
 
 
