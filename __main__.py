@@ -22,7 +22,9 @@ else:
     from matplotlib.backends.backend_qt4agg import (
         FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
 from matplotlib.figure import Figure
-	
+
+from matplotlib import cm
+
 # generate random integer values
 from random import seed
 from random import randint
@@ -92,7 +94,8 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         x = np.array(sizes)
 
         self._static_ax = self.static_canvas.figure.subplots()
-        self._static_ax.pie(x, shadow=False, startangle=90)
+	cs=cm.Set1(np.arange(40)/40.)
+        self._static_ax.pie(x, shadow=False, startangle=90, colors=cs)
         self._static_ax.legend(labels=labels, loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
 
     def populate(self):
