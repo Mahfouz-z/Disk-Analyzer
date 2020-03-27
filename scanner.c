@@ -68,37 +68,26 @@ void print_tree(struct list *ptr){
 unsigned long long directorySize(char *directory_name,struct list* prev )
 {
     unsigned long long directory_size = 0;
-
     DIR *pDir; // create a pointer to the current directory struct
-
     if ((pDir = opendir(directory_name)) != NULL) // check if the current file is an openable directory
     {
         struct dirent *pDirent;
-
         while ((pDirent = readdir(pDir)) != NULL) 
         {
             char buffer[PATH_MAX + 1];
-            
-
             strcat(strcat(strcpy(buffer, directory_name), strcmp(directory_name, "/") != 0 ?"/":""), pDirent->d_name); // copy the new path to the buffer
-
             // this is the for the general size tree
             // it works except for the name problem
             struct list *current =( struct list*)malloc(sizeof(struct list));
             vector_init(&current->next);
             current->size=0;
             struct stat file_stat;
-            
-
             if (pDirent->d_type != DT_DIR) // if the file type is not a directory, add it's size
             {
               if (strcmp(pDirent->d_name, ".") != 0 && strcmp(pDirent->d_name, "..") != 0){
-                
                 lstat(buffer, &file_stat);
-
                 if (!S_ISLNK(file_stat.st_mode) && S_ISREG(file_stat.st_mode)){
                   // if the file is not a symbolic link, count it
-                  
                   current->size = file_stat.st_size;
                   counter += (file_stat.st_blocks *BLOCKSIZE) /(1024*1024*1024.0);
                   directory_size+=current->size;
@@ -107,7 +96,6 @@ unsigned long long directorySize(char *directory_name,struct list* prev )
                 }
               }
             }
-
             else if (pDirent->d_type == DT_DIR ) 
             {
                 // the proc folder is excluded since it's not on the disk
@@ -122,8 +110,7 @@ unsigned long long directorySize(char *directory_name,struct list* prev )
                       current->size += directorySize(buffer,current);
                       directory_size +=current->size;
                       strcpy(current->name,buffer);
-                      vector_add(&prev->next,current);
-                     
+                      vector_add(&prev->next,current); 
                     }
                 }
             }
