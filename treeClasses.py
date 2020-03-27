@@ -27,3 +27,17 @@ class Tree:
         item = QtWidgets.QTreeWidgetItem(treeView, [Name, root.nsize, root.type])
         for child in root.next:
             self.tree_print(child, item)
+
+    def findHead(self, root, path, folderHead):
+        if(root.npath == path):
+            folderHead.npath = root.npath
+            folderHead.nchildrenNump = root.nchildrenNump
+            folderHead.nsize = root.nsize
+            folderHead.type = root.type
+            folderHead.next = root.next
+        elif(path.find(root.npath) != -1):
+            for child in root.next:
+                self.findHead(child, path, folderHead)
+ 
+        
+        
