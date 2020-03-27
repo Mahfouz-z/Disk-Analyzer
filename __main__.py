@@ -25,37 +25,37 @@ from matplotlib.figure import Figure
 
 from matplotlib import cm
 
-
+# generate random integer values
+from random import seed
+from random import randint
+# seed random number generator
+seed(1)
 
 
 class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self, maya=False):
         super(MyFileBrowser, self).__init__()
-        self.parseTree()
         self.setupUi(self)
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.pushButton.clicked.connect(self.analyze)
         self.treeView.itemClicked.connect(self.treeClicked)
         self.treeView.setHeaderLabels(["Path", "size", "Type"])
-        
 
-    def parseTree(self):
-        self.disk_tree = Tree() 
-        parserInstance = parser(self.disk_tree)
-        parserInstance.generate(self.disk_tree.head) 
-        print("done parsing the tree!")
 
     def treeClicked(self, it, col):
         print(it.text(0))
 
     def analyze(self):
         filePath = self.pathEntry.text()
-        if os.path.exists(filePath):
-            folderHead = Node("","","") 
-            self.disk_tree.findHead(self.disk_tree.head, filePath, folderHead)
-            print(folderHead.npath) 
-            self.populate(folderHead)
-            self.setPieChart(folderHead)
+        if os.path.exists(filePath):  
+            os.system('./scanner ' + filePath + ' ' + "> tree.txt")
+            print("done producing the tree!")
+            self.disk_tree = Tree() 
+            parserInstance = parser(self.disk_tree)
+            parserInstance.generate(self.disk_tree.head) 
+            print("done parsing the tree!")
+            self.populate()
+            self.setPieChart(self.disk_tree.head)
         else:
             self.pathEntry.setText("Invalid Path Please Reenter a valid one!")
 
@@ -74,11 +74,9 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
  
     def setPieChart(self, folderHead):
         for i in reversed(range(self.layout.count())): 
-            self.layout.itemAt(i).widget().setParent(None) 
-
+            self.layout.itemAt(i).widget().setParent(None)            
         self.static_canvas = FigureCanvas(Figure(figsize=(10, 6)))
         self.layout.addWidget(self.static_canvas)
-
         sizes = []
         labels = []
         if(folderHead.nchildrenNump != 0):
@@ -96,12 +94,13 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         x = np.array(sizes)
 
         self._static_ax = self.static_canvas.figure.subplots()
-        self._static_ax.pie(x, shadow=False, startangle=90)
+        cs=cm.Set1(np.arange(40)/40.0)
+        self._static_ax.pie(x, shadow=False, startangle=90, colors=cs)
         self._static_ax.legend(labels=labels, loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
 
-    def populate(self, folderHead):
+    def populate(self):
         self.treeView.clear()
-        self.disk_tree.tree_print(folderHead, self.treeView)
+        self.disk_tree.tree_print(self.disk_tree.head, self.treeView)
         #self.model = QtWidgets.QFileSystemModel()
         #self.model.setRootPath((QtCore.QDir.rootPath()))
         #self.treeView.setModel(self.model)
@@ -111,16 +110,10 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
 
 
 if __name__ == '__main__':
-    cmd = ["gcc", "-o", "scanner", "scanner.c"] 
-    p = subprocess.Popen(cmd)  
-    p.wait()  
-    os.system('./scanner ' + '/' + ' ' + "> tree.txt")
-    print("done producing the tree!")
+    cmd = ["gcc", "-o", "scanner", "scanner.c"]; 
+    p = subprocess.Popen(cmd);  
+    p.wait();   
     app = QtWidgets.QApplication([])
     fb = MyFileBrowser()
     fb.show()
     app.exec_()
-
-
-
-
