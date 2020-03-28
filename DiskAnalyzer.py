@@ -58,8 +58,7 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
 
 
     def analyze(self):
-        filePath = str(self.pathEntry.text())
-        self.treeClickedPathHelper = filePath[0:filePath.rfind("/")]
+        filePath = str(self.pathEntry.text())        
         if os.path.exists(filePath):
             currentPath = os.getcwd()
             if(filePath[len(filePath)-1] == '/' and len(filePath) != 1):
@@ -70,7 +69,7 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
                 filePath = filePath.replace("..",os.path.normpath(os.getcwd() + os.sep + os.pardir))
             elif(filePath.find(".") != -1):
                 filePath = filePath.replace(".",currentPath)
-            
+            self.treeClickedPathHelper = filePath[0:filePath.rfind("/")]
             #print(filePath)
 
             folderHead = Node("","","") 
