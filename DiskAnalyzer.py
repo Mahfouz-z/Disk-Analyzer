@@ -81,6 +81,7 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
     def sizeTextToInt(self, size):
         sizeArr = size.split(" ")
         floatSize = float(sizeArr[0])
+        sizeArr = sizeArr[::-1]
         if(sizeArr[0] == "GiB"):
             floatSize = floatSize * 10e9
         elif(sizeArr[0] == "MiB"):
@@ -118,19 +119,25 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         major.reverse()
         s=0.0
         rs=[]
+        ls = []
         for i in range(len(major)-9):
             other=major.pop()
             s+=other[1]
         major.append(("others", s))
         for i in range(len(major)):
             rs.append(major[i][1])
+            if major[i][0][0]=='_':
+                ls.append(' '+major[i][0])
+            else:
+                ls.append(major[i][0])
+
         self._static_ax = self.static_canvas.figure.subplots()
         self.theme = plt.get_cmap('jet_r')
         self._static_ax.set_prop_cycle("color", [self.theme(1. * i / len(major))for i in range(len(major))])
         self._static_ax.pie(rs, shadow=False, startangle=90)
 
         self.total = sum(sizes)
-        self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in major], loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
+        self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in zip(ls , rs)], loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
         
 
     def populate(self, folderHead):
