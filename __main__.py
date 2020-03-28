@@ -42,6 +42,8 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         print("done parsing the tree!")
 
     def treeClicked(self, it, col):
+        if(it.text(2) != "Folder" and it.text(2) != ""):
+            it = it.parent()
         path = "/" + it.text(0)
         while(it.parent() != None and it.parent().text(0) != ""):
             path = "/" + it.parent().text(0) + path
