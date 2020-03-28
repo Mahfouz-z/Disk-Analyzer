@@ -169,10 +169,10 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
 
 if __name__ == '__main__':
     print("Loaing Tree Parser, Please Wait!")
-    #os.system("gcc -o scanner scanner.c") 
+    os.system("gcc -o scanner scanner.c") 
     print("Done Loading Tree Parser!")
     print("Producing The Disk Tree, Please Wait...")
-    #os.system('./scanner ' + '/' + ' ' + "> tree.txt")
+    os.system('./scanner ' + '/' + ' ' + "> tree.txt")
     print("done producing the tree!")
     app = QtWidgets.QApplication([])
     fb = MyFileBrowser()
