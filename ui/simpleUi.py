@@ -58,5 +58,5 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Disk Analyzer"))
         self.pushButton.setText(_translate("MainWindow", "Start Analysis"))
-        self.pathEntry.setText(_translate("MainWindow", "Enter The Path"))
+        self.pathEntry.setPlaceholderText(_translate("MainWindow", "Enter The Path"))
 
