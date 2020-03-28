@@ -22,7 +22,7 @@ static void vector_resize(vector *v, int capacity)
     printf("vector_resize: %d to %d\n", v->capacity, capacity);
     #endif
 
-    void **items = realloc(v->items, sizeof(void *) * capacity);
+    struct list **items = realloc(v->items, sizeof(struct list *) * capacity);
     if (items) {
         v->items = items;
         v->capacity = capacity;

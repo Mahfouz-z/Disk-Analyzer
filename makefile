@@ -1,9 +1,10 @@
-all: __main__.py packages
-	python3 __main.py
+all: packages DiskAnalyzer.py 
+	sudo python3 DiskAnalyzer.py
 packages:
 	sudo apt-get install python3
 	sudo apt-get install python3-pip
-	sudo apt-get install python3-pyqt5
-	pip3 install matplotlib
+	pip3 install --user --upgrade pip
+	python3 -m pip install PyQt5
+	sudo apt-get install python3-matplotlib
 
 
