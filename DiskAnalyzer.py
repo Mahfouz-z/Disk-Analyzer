@@ -115,7 +115,6 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         major.append(("others", s))
         for i in range(len(major)):
             rs.append(major[i][1])
-        print(rs)
         self._static_ax = self.static_canvas.figure.subplots()
         self.theme = plt.get_cmap('jet_r')
         self._static_ax.set_prop_cycle("color", [self.theme(1. * i / len(major))for i in range(len(major))])
