@@ -34,13 +34,13 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         
 
     def parseTree(self):
-        print("Please Wait, Parsing The Tree...")
+        print("Parsing The Tree Please Wait..")
         self.disk_tree = Tree() 
         parserInstance = parser(self.disk_tree)
         parserInstance.generate(self.disk_tree.head)
         self.treeViewPermnanet = QtWidgets.QTreeWidget()
         self.disk_tree.tree_print(self.disk_tree.head, self.treeViewPermnanet)
-        print("done parsing the tree!")
+        print("Done Parsing The Tree!")
 
     def treeClicked(self, it, col):
         if(it.text(2) != "Folder" and it.text(2) != ""):
@@ -49,6 +49,8 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         while(it.parent() != None and it.parent().text(0) != ""):
             path = "/" + it.parent().text(0) + path
             it = it.parent()
+        if(self.treeClickedPathHelper != "/"):
+            path = self.treeClickedPathHelper + path
         print(path)
         folderHead = Node("","","") 
         self.disk_tree.findHead(self.disk_tree.head, path, folderHead)
@@ -57,6 +59,7 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
 
     def analyze(self):
         filePath = str(self.pathEntry.text())
+        self.treeClickedPathHelper = filePath[0:filePath.rfind("/")]
         if os.path.exists(filePath):
             currentPath = os.getcwd()
             if(filePath[len(filePath)-1] == '/' and len(filePath) != 1):
@@ -136,11 +139,10 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         self.theme = plt.get_cmap('jet_r')
         self._static_ax.set_prop_cycle("color", [self.theme(1. * i / len(major))for i in range(len(major))])
         self._static_ax.pie(rs, shadow=False, startangle=90)
-
         self.total = sum(sizes)
-        self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in zip(ls , rs)], loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
-        
-
+        if(self.total != 0):
+            self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in zip(ls , rs)], loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
+      
     def populate(self, folderHead):
         self.treeView.clear()
         root = self.treeViewPermnanet.invisibleRootItem()
@@ -169,9 +171,9 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
 
 
 if __name__ == '__main__':
-    print("Loaing Tree Parser, Please Wait...")
+    print("Loaing Disk Tree Scrapper, Please Wait...")
     os.system("gcc -o scanner scanner.c") 
-    print("Done Loading Tree Parser!")
+    print("Done Loading Tree Scrapper!")
     print("Producing The Disk Tree, Please Wait...")
     os.system('./scanner ' + '/' + ' ' + "> tree.txt")
     print("done producing the tree!")
@@ -179,6 +181,10 @@ if __name__ == '__main__':
     fb = MyFileBrowser()
     fb.show()
     app.exec_()
+
+
+
+
 
 
 
