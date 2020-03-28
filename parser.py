@@ -3,7 +3,7 @@ from treeClasses import *
 class parser():
     def __init__(self, disk_tree):
         directoriesDict="tree.txt"
-        f=open(directoriesDict, "r")
+        f=open(directoriesDict, "r")  #opening the file that contains all path information
         self.data=f.read()
         self.parsed=[]
         self.dirc=[]
@@ -11,6 +11,9 @@ class parser():
         self.size=[]
         self.children=[]
 
+        #parsing the data in 3 differnt lists, one for the path, one for the size
+        #and one for the number of children 
+        
         self.parsed = self.data.split("\n") 
         self.total = self.parsed.pop(0) 
         self.parsed.pop(len(self.parsed)-1)
@@ -28,7 +31,7 @@ class parser():
         disk_tree.head = self.head
         self.count = 0
 
-    def generate(self, prev): 
+    def generate(self, prev): #ganarating the tree
         # Save the current number of children to avoid the incrementation of count
         self.num = self.children[self.count]
         if ( int(self.children[self.count]) != 0 ):  # in case fil, appened to the
