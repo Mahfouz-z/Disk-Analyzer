@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 
 
@@ -10,6 +11,9 @@ from PyQt5 import QtGui
 from PyQt5 import QtCore
 import os
 import numpy as np
+import random
+import matplotlib.colors as mcolors
+from collections import OrderedDict
 
 from ui import simpleUi
 
@@ -22,7 +26,7 @@ else:
     from matplotlib.backends.backend_qt4agg import (
         FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
 from matplotlib.figure import Figure
-
+import matplotlib.pyplot as plt
 from matplotlib import cm
 
 
@@ -70,9 +74,11 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         else:
             self.pathEntry.setText("Invalid Path Please Reenter a valid one!")
 
+
     def sizeTextToInt(self, size):
         sizeArr = size.split(" ")
         floatSize = float(sizeArr[0])
+        sizeArr=sizeArr[::-1] 
         if(sizeArr[0] == "GiB"):
             floatSize = floatSize * 10e9
         elif(sizeArr[0] == "MiB"):
@@ -85,11 +91,9 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
  
     def setPieChart(self, folderHead):
         for i in reversed(range(self.layout.count())): 
-            self.layout.itemAt(i).widget().setParent(None) 
-
+            self.layout.itemAt(i).widget().setParent(None)            
         self.static_canvas = FigureCanvas(Figure(figsize=(10, 6)))
         self.layout.addWidget(self.static_canvas)
-
         sizes = []
         labels = []
         if(folderHead.nchildrenNump != 0):
@@ -107,9 +111,13 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         x = np.array(sizes)
 
         self._static_ax = self.static_canvas.figure.subplots()
-        self._static_ax.pie(x, shadow=False, startangle=90)
-        self._static_ax.legend(labels=labels, loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
+        self.theme = plt.get_cmap('jet')
+        self._static_ax.set_prop_cycle("color", [self.theme(1. * i / len(sizes))for i in range(len(sizes))])
+        self._static_ax.pie(sizes, shadow=False, startangle=90)
 
+        self.total = sum(sizes)
+        self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in zip(labels, sizes)], loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
+        
     def populate(self, folderHead):
         self.treeView.clear()
         root = self.treeViewPermnanet.invisibleRootItem()
