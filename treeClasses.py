@@ -29,15 +29,17 @@ class Tree:
             self.tree_print(child, item)
 
     def findHead(self, root, path, folderHead):
-        if(root.npath == path):
+        if(root.npath.find(path) != -1):
             folderHead.npath = root.npath
             folderHead.nchildrenNump = root.nchildrenNump
             folderHead.nsize = root.nsize
             folderHead.type = root.type
             folderHead.next = root.next
-        for child in root.next:
-            if(path.find(child.npath) != -1):
-                self.findHead(child, path, folderHead)
+        else:
+            for child in root.next:
+                print(path,child.npath,child.npath.find(path) )
+                if(child.npath.find(path) != -1):
+                    self.findHead(child, path, folderHead)
  
         
         
