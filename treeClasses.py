@@ -37,7 +37,6 @@ class Tree:
             folderHead.next = root.next
         else:
             for child in root.next:
-                print(path,child.npath,child.npath.find(path) )
                 if(child.npath.find(path) != -1):
                     self.findHead(child, path, folderHead)
  
