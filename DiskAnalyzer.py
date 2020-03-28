@@ -102,23 +102,26 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
             labels.append(Name)
 
         #x = np.array(sizes)
-
-        self._static_ax = self.static_canvas.figure.subplots()
-        self.theme = plt.get_cmap('jet')
-        self._static_ax.set_prop_cycle("color", [self.theme(1. * i / len(sizes))for i in range(len(sizes))])
-        self._static_ax.pie(sizes, shadow=False, startangle=90)
-
-        self.total = sum(sizes)
         major=[]
         for i in range(len(labels)):
             major.append((labels[i], sizes[i]))
         major=sorted(major, key=operator.itemgetter(1))
         major.reverse()
         s=0.0
+        rs=[]
         for i in range(len(major)-9):
             other=major.pop()
             s+=other[1]
         major.append(("others", s))
+        for i in range(len(major)):
+            rs.append(major[i][1])
+        print(rs)
+        self._static_ax = self.static_canvas.figure.subplots()
+        self.theme = plt.get_cmap('jet_r')
+        self._static_ax.set_prop_cycle("color", [self.theme(1. * i / len(major))for i in range(len(major))])
+        self._static_ax.pie(rs, shadow=False, startangle=90)
+
+        self.total = sum(sizes)
         self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in major], loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
         
 
