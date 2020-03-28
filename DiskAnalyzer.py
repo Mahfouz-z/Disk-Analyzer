@@ -4,6 +4,7 @@
 from treeClasses import *
 from parser import *
 import subprocess
+import operator
 
 from PyQt5 import QtWidgets
 from PyQt5 import QtGui
@@ -33,6 +34,7 @@ from random import seed
 from random import randint
 # seed random number generator
 seed(1)
+
 
 
 class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
@@ -107,7 +109,17 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         self._static_ax.pie(sizes, shadow=False, startangle=90)
 
         self.total = sum(sizes)
-        self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in zip(labels, sizes)], loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
+        major=[]
+        for i in range(len(labels)):
+            major.append((labels[i], sizes[i]))
+        major=sorted(major, key=operator.itemgetter(1))
+        major.reverse()
+        s=0.0
+        for i in range(len(major)-9):
+            other=major.pop()
+            s+=other[1]
+        major.append(("others", s))
+        self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in major], loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
         
 
     def populate(self):
