@@ -10,7 +10,6 @@
 #include "vector.c"
 
 #define BLOCKSIZE 512
-static double counter = 0;
 long tot;
 
 #define DIM(x) (sizeof(x)/sizeof(*(x)))
@@ -89,7 +88,6 @@ unsigned long long directorySize(char *directory_name,struct list* prev )
                 if (!S_ISLNK(file_stat.st_mode) && S_ISREG(file_stat.st_mode)){
                   // if the file is not a symbolic link, count it
                   current->size = file_stat.st_size;
-                  counter += (file_stat.st_blocks *BLOCKSIZE) /(1024*1024*1024.0);
                   directory_size+=current->size;
                   strcpy(current->name,buffer);
                   vector_add(&prev->next,current);

@@ -1,7 +1,7 @@
-Using st_size: 27.2 MiB
-27.2 MiB    .
-22 
-4.2 KiB    ./DiskAnalyzer.py
+Using st_size: 25.0 MiB
+25.0 MiB    .
+21 
+4.0 KiB    ./DiskAnalyzer.py
 0 
 11.3 KiB    ./__pycache__
 4 
@@ -46,7 +46,7 @@ Using st_size: 27.2 MiB
 0    ./.git/branches
 0 
 18.5 MiB    ./.git/objects
-57 
+60 
 672 B    ./.git/objects/11
 1 
 672 B    ./.git/objects/11/394d97d99a120bdec154d01b6e90061cf9bd83
@@ -189,6 +189,14 @@ Using st_size: 27.2 MiB
 1 
 1.5 KiB    ./.git/objects/ab/1ab89b9a7f4dbf6788310352ee7d94aec50850
 0 
+648 B    ./.git/objects/50
+1 
+648 B    ./.git/objects/50/48d1a26c19306ec8266fc0e5e1eb0afec8c09e
+0 
+176 B    ./.git/objects/a4
+1 
+176 B    ./.git/objects/a4/639c825acffe707a9bd3752ae841741862fb6c
+0 
 672 B    ./.git/objects/cc
 1 
 672 B    ./.git/objects/cc/7c098a34ab7d5910d3bd5ff114cd31e8d43adc
@@ -234,6 +242,10 @@ Using st_size: 27.2 MiB
 172 B    ./.git/objects/04
 1 
 172 B    ./.git/objects/04/c133189be38df7359fba0e0c98bf6dc5896fc8
+0 
+3.2 KiB    ./.git/objects/40
+1 
+3.2 KiB    ./.git/objects/40/da9cb165ee3f976dcd7ace4fe1a28726e5ab86
 0 
 2.5 KiB    ./.git/objects/76
 1 
@@ -321,7 +333,7 @@ Using st_size: 27.2 MiB
 0 
 3.2 KiB    ./.git/hooks/fsmonitor-watchman.sample
 0 
-19 B    ./.git/COMMIT_EDITMSG
+36 B    ./.git/COMMIT_EDITMSG
 0 
 73 B    ./.git/description
 0 
@@ -329,29 +341,29 @@ Using st_size: 27.2 MiB
 0 
 336 B    ./.git/FETCH_HEAD
 0 
-4.2 KiB    ./.git/logs
+4.7 KiB    ./.git/logs
 2 
-2.7 KiB    ./.git/logs/refs
+3.0 KiB    ./.git/logs/refs
 2 
-1.5 KiB    ./.git/logs/refs/heads
+1.6 KiB    ./.git/logs/refs/heads
 1 
-1.5 KiB    ./.git/logs/refs/heads/master
+1.6 KiB    ./.git/logs/refs/heads/master
 0 
-1.2 KiB    ./.git/logs/refs/remotes
+1.4 KiB    ./.git/logs/refs/remotes
 1 
-1.2 KiB    ./.git/logs/refs/remotes/origin
+1.4 KiB    ./.git/logs/refs/remotes/origin
 2 
-1.1 KiB    ./.git/logs/refs/remotes/origin/master
+1.2 KiB    ./.git/logs/refs/remotes/origin/master
 0 
 190 B    ./.git/logs/refs/remotes/origin/HEAD
 0 
-1.5 KiB    ./.git/logs/HEAD
+1.6 KiB    ./.git/logs/HEAD
 0 
 240 B    ./.git/info
 1 
 240 B    ./.git/info/exclude
 0 
-4.8 KiB    ./scanner.c
+4.7 KiB    ./scanner.c
 0 
 2.1 MiB    ./Report.odt
 0 
@@ -367,9 +379,7 @@ Using st_size: 27.2 MiB
 0 
 0    ./tree.txt
 0 
-13.3 KiB    ./scanner
-0 
-2.1 MiB    ./report.odt
+13.2 KiB    ./scanner
 0 
 2.3 MiB    ./list
 0 

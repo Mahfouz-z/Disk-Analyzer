@@ -52,11 +52,11 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         filePath = self.pathEntry.text()
         if os.path.exists(filePath):  
             os.system('./scanner ' + filePath + ' ' + "> tree.txt")
-            print("done producing the tree!")
+            print("Done producing the tree!")
             self.disk_tree = Tree() 
             parserInstance = parser(self.disk_tree)
             parserInstance.generate(self.disk_tree.head) 
-            print("done parsing the tree!")
+            print("Done parsing the tree!")
             self.populate()
             self.setPieChart(self.disk_tree.head)
         else:
@@ -109,19 +109,15 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
     def populate(self):
         self.treeView.clear()
         self.disk_tree.tree_print(self.disk_tree.head, self.treeView)
-        #self.model = QtWidgets.QFileSystemModel()
-        #self.model.setRootPath((QtCore.QDir.rootPath()))
-        #self.treeView.setModel(self.model)
-        #self.treeView.setRootIndex(self.model.index(path))
         self.treeView.setSortingEnabled(True)
 
 
 
 if __name__ == '__main__':
     
-    cmd = ["gcc", "-o", "scanner", "scanner.c"]; 
-    p = subprocess.Popen(cmd);  
-    p.wait();   
+    cmd = ["gcc", "-o", "scanner", "scanner.c"]
+    p = subprocess.Popen(cmd)  
+    p.wait()  
     app = QtWidgets.QApplication([])
     fb = MyFileBrowser()
     fb.show()
