@@ -143,7 +143,7 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         self._static_ax.pie(rs, shadow=False, startangle=90)
         self.total = sum(sizes)
         if(self.total != 0):
-            self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in zip(ls , rs)],bbox_to_anchor=(1.08, 1.05, 0.1, 0.1), loc='upper right')
+            self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in zip(ls , rs)],bbox_to_anchor=[1.08,1.05,0.1,0.1], loc='upper right')
       
     def populate(self, folderHead):
         self.treeView.clear()
@@ -174,10 +174,10 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
 
 if __name__ == '__main__':
     print("Loaing Disk Tree Scrapper, Please Wait...")
-    os.system("gcc -o scanner scanner.c") 
+    #os.system("gcc -o scanner scanner.c") 
     print("Done Loading Tree Scrapper!")
     print("Producing The Disk Tree, Please Wait...")
-    os.system('./scanner ' + '/' + ' ' + "> tree.txt")
+    #os.system('./scanner ' + '/' + ' ' + "> tree.txt")
     print("done producing the tree!")
     app = QtWidgets.QApplication([])
     fb = MyFileBrowser()
