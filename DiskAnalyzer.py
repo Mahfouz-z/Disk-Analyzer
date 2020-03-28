@@ -34,6 +34,7 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         
 
     def parseTree(self):
+        print("Please Wait, Parsing The Tree...")
         self.disk_tree = Tree() 
         parserInstance = parser(self.disk_tree)
         parserInstance.generate(self.disk_tree.head)
@@ -168,7 +169,7 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
 
 
 if __name__ == '__main__':
-    print("Loaing Tree Parser, Please Wait!")
+    print("Loaing Tree Parser, Please Wait...")
     os.system("gcc -o scanner scanner.c") 
     print("Done Loading Tree Parser!")
     print("Producing The Disk Tree, Please Wait...")
