@@ -35,8 +35,8 @@ class Tree:
             folderHead.nsize = root.nsize
             folderHead.type = root.type
             folderHead.next = root.next
-        elif(path.find(root.npath) != -1):
-            for child in root.next:
+        for child in root.next:
+            if(path.find(child.npath) != -1):
                 self.findHead(child, path, folderHead)
  
         
