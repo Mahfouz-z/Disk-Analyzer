@@ -141,7 +141,7 @@ if __name__ == '__main__':
     cmd = ["gcc", "-o", "scanner", "scanner.c"] 
     p = subprocess.Popen(cmd)  
     p.wait()  
-    #os.system('./scanner ' + '/' + ' ' + "> tree.txt")
+    os.system('./scanner ' + '/' + ' ' + "> tree.txt")
     print("done producing the tree!")
     app = QtWidgets.QApplication([])
     fb = MyFileBrowser()
