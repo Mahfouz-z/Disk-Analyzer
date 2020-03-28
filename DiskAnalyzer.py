@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 
 
@@ -10,7 +9,7 @@ from PyQt5 import QtWidgets
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 import os
-import numpy as np
+#import numpy as np
 import random
 import matplotlib.colors as mcolors
 from collections import OrderedDict
@@ -29,51 +28,43 @@ from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
-
+# generate random integer values
+from random import seed
+from random import randint
+# seed random number generator
+seed(1)
 
 
 class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self, maya=False):
         super(MyFileBrowser, self).__init__()
-        self.parseTree()
         self.setupUi(self)
         self.treeView.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.pushButton.clicked.connect(self.analyze)
         self.treeView.itemClicked.connect(self.treeClicked)
         self.treeView.setHeaderLabels(["Path", "size", "Type"])
-        
 
-    def parseTree(self):
-        self.disk_tree = Tree() 
-        parserInstance = parser(self.disk_tree)
-        parserInstance.generate(self.disk_tree.head)
-
-        self.treeViewPermnanet = QtWidgets.QTreeWidget()
-        self.disk_tree.tree_print(self.disk_tree.head, self.treeViewPermnanet)
-        print("done parsing the tree!")
 
     def treeClicked(self, it, col):
         print(it.text(0))
+        #self.disk_tree = Tree() 
+        folderHead = Node("","","") 
+        self.disk_tree.findHead(self.disk_tree.head, it.text(0), folderHead)
+        self.setPieChart(folderHead)
 
     def analyze(self):
         filePath = self.pathEntry.text()
-        if os.path.exists(filePath):
-            currentPath = os.getcwd()
-            if(filePath[len(filePath)-1] == '/' and len(filePath) != 1):
-                filePath = filePath[:-1]
-            if(filePath.find(".") != -1):
-                filePath.replace(".",currentPath)
-            if(filePath == ".."):
-                filePath = os.path.normpath(os.getcwd() + os.sep + os.pardir)
-            folderHead = Node("","","") 
-            self.disk_tree.findHead(self.disk_tree.head, filePath, folderHead)
-            #print(folderHead.npath) 
-            self.populate(folderHead)
-            self.setPieChart(folderHead)
-          
+        if os.path.exists(filePath):  
+            os.system('./scanner ' + filePath + ' ' + "> tree.txt")
+            print("Done producing the tree!")
+            self.disk_tree = Tree() 
+            parserInstance = parser(self.disk_tree)
+            parserInstance.generate(self.disk_tree.head) 
+            print("Done parsing the tree!")
+            self.populate()
+            self.setPieChart(self.disk_tree.head)
         else:
             self.pathEntry.setText("Invalid Path Please Reenter a valid one!")
-
 
     def sizeTextToInt(self, size):
         sizeArr = size.split(" ")
@@ -108,7 +99,7 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
             Name = Name[len(Name)-1]
             labels.append(Name)
 
-        x = np.array(sizes)
+        #x = np.array(sizes)
 
         self._static_ax = self.static_canvas.figure.subplots()
         self.theme = plt.get_cmap('jet')
@@ -118,44 +109,20 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         self.total = sum(sizes)
         self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in zip(labels, sizes)], loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
         
-    def populate(self, folderHead):
+
+    def populate(self):
         self.treeView.clear()
-        root = self.treeViewPermnanet.invisibleRootItem()
-        self.popHelper(folderHead.npath, "", root)
-        print("populated")
+        self.disk_tree.tree_print(self.disk_tree.head, self.treeView)
         self.treeView.setSortingEnabled(True)
 
-    def popHelper(self, path, currentPath, root):
-        if(currentPath == path):
-            self.treeView.addTopLevelItem(root.clone())
-            print("found!")
-            path = -1
-
-        child_count = root.childCount()
-        for i in range(child_count):
-            if(path == -1): return
-            item = root.child(i)
-            if(currentPath != "/"):
-                searchPath =  currentPath + "/" + item.text(0)
-            else:
-                searchPath =  currentPath + item.text(0)
-            if(path.find(searchPath) != -1):
-                self.popHelper(path, searchPath, item)
-            
-                    
 
 
 if __name__ == '__main__':
-    cmd = ["gcc", "-o", "scanner", "scanner.c"] 
+    
+    cmd = ["gcc", "-o", "scanner", "scanner.c"]
     p = subprocess.Popen(cmd)  
     p.wait()  
-    os.system('./scanner ' + '/' + ' ' + "> tree.txt")
-    print("done producing the tree!")
     app = QtWidgets.QApplication([])
     fb = MyFileBrowser()
     fb.show()
     app.exec_()
-
-
-
-
