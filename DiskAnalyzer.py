@@ -58,8 +58,10 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
 
 
     def analyze(self):
-        filePath = str(self.pathEntry.text())        
+        filePath = str(self.pathEntry.text())
+        
         if os.path.exists(filePath):
+            '''
             currentPath = os.getcwd()
             if(filePath[len(filePath)-1] == '/' and len(filePath) != 1):
                 filePath = filePath[:-1]
@@ -69,9 +71,10 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
                 filePath = filePath.replace("..",os.path.normpath(os.getcwd() + os.sep + os.pardir))
             elif(filePath.find(".") != -1):
                 filePath = filePath.replace(".",currentPath)
-            self.treeClickedPathHelper = filePath[0:filePath.rfind("/")]
+            '''
+            filePath = os.path.abspath(filePath)
             #print(filePath)
-
+            self.treeClickedPathHelper = filePath[0:filePath.rfind("/")]
             folderHead = Node("","","") 
             self.disk_tree.findHead(self.disk_tree.head, filePath, folderHead)
             #print(folderHead.npath) 
@@ -140,7 +143,7 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
         self._static_ax.pie(rs, shadow=False, startangle=90)
         self.total = sum(sizes)
         if(self.total != 0):
-            self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in zip(ls , rs)], loc="upper right", bbox_to_anchor=(1, 1, 0.2, 0.2))
+            self._static_ax.legend(labels=['%s, %1.1f%%' % (l, (float(s) / self.total) * 100)for l, s in zip(ls , rs)],bbox_to_anchor=[0.75, 0.75], loc='center left')
       
     def populate(self, folderHead):
         self.treeView.clear()
@@ -171,19 +174,15 @@ class MyFileBrowser(simpleUi.Ui_MainWindow, QtWidgets.QMainWindow):
 
 if __name__ == '__main__':
     print("Loaing Disk Tree Scrapper, Please Wait...")
-    os.system("gcc -o scanner scanner.c") 
+    #os.system("gcc -o scanner scanner.c") 
     print("Done Loading Tree Scrapper!")
     print("Producing The Disk Tree, Please Wait...")
-    os.system('./scanner ' + '/' + ' ' + "> tree.txt")
+    #os.system('./scanner ' + '/' + ' ' + "> tree.txt")
     print("done producing the tree!")
     app = QtWidgets.QApplication([])
     fb = MyFileBrowser()
     fb.show()
     app.exec_()
-
-
-
-
 
 
 
